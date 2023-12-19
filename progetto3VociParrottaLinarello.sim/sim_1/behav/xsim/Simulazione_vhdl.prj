@@ -4,7 +4,7 @@ vhdl xil_defaultlib  \
 "../../../../progetto3VociParrottaLinarello.srcs/sources_1/new/SommaStep1_2.vhd" \
 "../../../../progetto3VociParrottaLinarello.srcs/sources_1/new/Sommatore.vhd" \
 "../../../../progetto3VociParrottaLinarello.srcs/sources_1/new/SommatoreCarrySave.vhd" \
-"../../../../progetto3VociParrottaLinarello.srcs/sim_1/new/Simulazione.vhd" \
+"../../../../progetto3VociParrottaLinarello.srcs/sim_1/new/CasiDegenere.vhd" \
 
 # Do not sort compile order
 nosort

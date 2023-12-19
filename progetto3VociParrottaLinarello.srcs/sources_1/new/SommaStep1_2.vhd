@@ -16,7 +16,7 @@ signal P, R: STD_LOGIC_VECTOR (n-1 downto 0);
 
 begin
     P <= A xor B xor C;
-    R <= (A and B) or (A and C) or (B and C);
+    R <= (A and B and C);
     SP <= P(n-1) & P;
     VR <= R & R(0);
 end Behavioral;
