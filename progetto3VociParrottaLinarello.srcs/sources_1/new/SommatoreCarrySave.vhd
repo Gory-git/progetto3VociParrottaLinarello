@@ -1,0 +1,55 @@
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity SommatoreCarrySave is
+generic (n:integer:=16);
+Port (  A : in STD_LOGIC_VECTOR (n-1 downto 0);
+        B : in STD_LOGIC_VECTOR (n-1 downto 0);
+        C : in STD_LOGIC_VECTOR (n-1 downto 0);
+        clk : in STD_LOGIC;
+        clear : in STD_LOGIC;
+        S : out STD_LOGIC_VECTOR (n+1 downto 0));
+end SommatoreCarrySave;
+
+architecture Behavioral of SommatoreCarrySave is
+
+component Registro is
+    generic (n : integer:=16);
+    Port ( clk : in STD_LOGIC;
+           clear : in STD_LOGIC;
+           D : in STD_LOGIC_VECTOR (n-1 downto 0);
+           Q : out STD_LOGIC_VECTOR (n-1 downto 0));
+end component;
+
+component SommaStep1_2 is
+    generic (n:integer:=16);
+    Port ( A : in STD_LOGIC_VECTOR (n-1 downto 0);
+           B : in STD_LOGIC_VECTOR (n-1 downto 0);
+           C : in STD_LOGIC_VECTOR (n-1 downto 0);
+           SP : out STD_LOGIC_VECTOR (n downto 0);
+           VR : out STD_LOGIC_VECTOR (n downto 0));
+end component;
+
+component Sommatore is
+    generic (n:integer:=16);
+    Port ( A : in STD_LOGIC_VECTOR (n-1 downto 0);
+           B : in STD_LOGIC_VECTOR (n-1 downto 0);
+           S : out STD_LOGIC_VECTOR (n downto 0));
+end component;
+
+signal Ra, Rb, Rc: STD_LOGIC_VECTOR (n-1 downto 0);
+signal SP, VR: STD_LOGIC_VECTOR (n downto 0);
+signal Sum: STD_LOGIC_VECTOR (n+1 downto 0);
+
+begin
+
+RegA: Registro generic map(n) port map(clk, clear, A, Ra);
+RegB: Registro generic map(n) port map(clk, clear, B, Rb);
+RegC: Registro generic map(n) port map(clk, clear, C, Rc);
+Step1_2: SommaStep1_2 generic map(n) port map(Ra, Rb, Rc, SP, VR);
+SommaFinale: Sommatore generic map(n+1) port map(SP, VR, Sum);
+RegOut: Registro generic map(n+2) port map(clk, clear, Sum, S);
+
+
+end Behavioral;
