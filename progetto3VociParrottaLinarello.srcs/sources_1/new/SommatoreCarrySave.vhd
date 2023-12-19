@@ -9,7 +9,8 @@ Port (  A : in STD_LOGIC_VECTOR (n-1 downto 0);
         C : in STD_LOGIC_VECTOR (n-1 downto 0);
         clk : in STD_LOGIC;
         clear : in STD_LOGIC;
-        S : out STD_LOGIC_VECTOR (n+1 downto 0));
+        S : out STD_LOGIC_VECTOR (n+1 downto 0)
+        );
 end SommatoreCarrySave;
 
 architecture Behavioral of SommatoreCarrySave is

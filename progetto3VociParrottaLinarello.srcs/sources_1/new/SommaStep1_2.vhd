@@ -12,11 +12,13 @@ end SommaStep1_2;
 
 architecture Behavioral of SommaStep1_2 is
 
-signal P, R: STD_LOGIC_VECTOR (n-1 downto 0);
+signal P, R: STD_LOGIC_VECTOR (n downto 0);
 
 begin
-    P <= A xor B xor C;
-    R <= (A and B and C);
-    SP <= P(n-1) & P;
-    VR <= R & R(0);
+    P(n-1 downto 0) <= A xor B xor C;
+    R(n downto 1) <= A and B and C;
+    P(n)<= P(n-1);
+    SP <= P;
+    R(0) <= '0'; 
+    VR <=R;
 end Behavioral;
