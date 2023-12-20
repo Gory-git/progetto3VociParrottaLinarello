@@ -37,6 +37,10 @@ begin
         wait until falling_edge(clk); 
         clr <= '0';
         wait for 3ns;
+        A <= "0000000000000001";
+        B <= "0000000000000001";
+        C <= "0000000000000001";
+        wait for 3ns;
         for i in -2**(n-1) to 2**(n-1)-1 loop
             A <= conv_std_logic_vector(i, n);
             wait for t;
